@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Kangaroo Adventure!</h1>
+        </header>
+        <section class="storyline">
+            <img src="{{ url_for('static', filename='kangaroo.png') }}" alt="Kangaroo" class="kangaroo-image">
+            <div class="text-content">
+                <h2>The Journey Begins</h2>
+                <p>
+                    Join our brave kangaroo as it embarks on an epic adventure across diverse landscapes. From the lush
+                    forests of Australia to the sandy deserts, our hero faces challenges, obstacles and makes
+                    new friends along the way! Your mission is to help the kangaroo overcome obstacles and reach new
+                    heights!!
+                </p>
+            </div>
+        </section>
+        <section class="gallery">
+            <h2>Explore the Adventure</h2>
+            <div class="image-grid">
+                <img src="{{ url_for('static', filename='forest.jpg') }}" alt="Forest">
+                <img src="{{ url_for('static', filename='desert.jpg') }}" alt="Desert">
+                <img src="{{ url_for('static', filename='mountains.jpg') }}" alt="Mountains">
+                <img src="{{ url_for('static', filename='friends.jpg') }}" alt="Friends">
+            </div>
+        </section>
+        <footer>
+            <button id="play-button">Play Game</button>
+        </footer>
+    </div>
+    <script>
+        document.getElementById('play-button').addEventListener('click', function() {
+            fetch('/play', {
+                method: 'POST'
+            }).then(response => {
+                if (response.ok) {
+                    alert('Game is running!');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
+
